@@ -1,7 +1,6 @@
 <nav class="sidenav">
-  <a href="{{ .Site.Home.RelPermalink }}"{{ if .IsHome }} class="active"{{ end }}>About</a>
-  <a href="{{ "research/" | relURL }}"{{ if eq .File.ContentBaseName "research" }} class="active"{{ end }}>Research</a>
-  <a href="{{ "teaching/" | relURL }}"{{ if eq .File.ContentBaseName "teaching" }} class="active"{{ end }}>Teaching</a>
-  <a href="{{ "creative-writing/" | relURL }}"{{ if eq .File.ContentBaseName "creative-writing" }} class="active"{{ end }}>Creative Writing</a>
-  <a href="{{ "cv/" | relURL }}"{{ if eq .Section "cv" }} class="active"{{ end }}>CV</a>
+  {{ range .Site.Menus.main }}
+    {{ $isActive := or (and $.IsHome (eq .URL $.Site.Home.RelPermalink)) (and (not $.IsHome) (eq $.Page.RelPermalink .URL)) }}
+    <a href="{{ .URL }}"{{ if $isActive }} class="active"{{ end }}>{{ .Name }}</a>
+  {{ end }}
 </nav>

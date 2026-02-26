@@ -1,11 +1,9 @@
 <div class="mobile-topbar">
   <div class="topbar-row">
-    {{ with .Site.Home }}
     <div class="topbar-identity">
-      <p class="name">{{ .Params.name }}</p>
-      <p class="position">{{ .Params.position }}</p>
+      <p class="name">{{ .Site.Data.identity.name }}</p>
+      <p class="position">{{ .Site.Data.identity.position }}</p>
     </div>
-    {{ end }}
     <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.body.classList.toggle('nav-open')">
       <span></span>
       <span></span>
@@ -13,20 +11,17 @@
     </button>
   </div>
   <nav class="mobile-nav">
-    <a href="{{ .Site.Home.RelPermalink }}"{{ if .IsHome }} class="active"{{ end }} onclick="document.body.classList.remove('nav-open')">About</a>
-    <a href="{{ "research/" | relURL }}"{{ if eq .File.ContentBaseName "research" }} class="active"{{ end }} onclick="document.body.classList.remove('nav-open')">Research</a>
-    <a href="{{ "teaching/" | relURL }}"{{ if eq .File.ContentBaseName "teaching" }} class="active"{{ end }} onclick="document.body.classList.remove('nav-open')">Teaching</a>
-    <a href="{{ "creative-writing/" | relURL }}"{{ if eq .File.ContentBaseName "creative-writing" }} class="active"{{ end }} onclick="document.body.classList.remove('nav-open')">Creative Writing</a>
-    <a href="{{ "cv/" | relURL }}"{{ if eq .Section "cv" }} class="active"{{ end }} onclick="document.body.classList.remove('nav-open')">CV</a>
+    {{ range .Site.Menus.main }}
+      {{ $isActive := or (and $.IsHome (eq .URL $.Site.Home.RelPermalink)) (and (not $.IsHome) (eq $.Page.RelPermalink .URL)) }}
+      <a href="{{ .URL }}"{{ if $isActive }} class="active"{{ end }} onclick="document.body.classList.remove('nav-open')">{{ .Name }}</a>
+    {{ end }}
   </nav>
 </div>
 
 <div class="left">
-  <img src="{{ "headshot.jpg" | relURL }}" alt="{{ .Site.Title }}"{{ if not .IsHome }} class="headshot-non-home"{{ end }}>
+  <img src="{{ "uploads/" | relURL }}{{ .Site.Data.identity.photo }}" alt="{{ .Site.Title }}"{{ if not .IsHome }} class="headshot-non-home"{{ end }}>
   <div class="caption caption-desktop">
-    {{ with .Site.Home }}
-    <p class="name">{{ .Params.name }}</p>
-    <p class="position">{{ .Params.position }}</p>
-    {{ end }}
+    <p class="name">{{ .Site.Data.identity.name }}</p>
+    <p class="position">{{ .Site.Data.identity.position }}</p>
   </div>
 </div>

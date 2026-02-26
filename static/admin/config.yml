@@ -1,0 +1,97 @@
+backend:
+  name: github
+  repo: panfletx/website
+  branch: main
+  base_url: https://sveltia-cms-auth.WORKER_NAME.workers.dev
+
+media_folder: static/uploads
+public_folder: /website/uploads
+
+collections:
+
+  - name: identity
+    label: Site Identity
+    files:
+      - name: identity
+        label: Name, Title & Photo
+        file: data/identity.yaml
+        fields:
+          - { label: Full Name, name: name, widget: string }
+          - { label: Position / Title, name: position, widget: string }
+          - { label: Email Address, name: email, widget: string }
+          - { label: Profile Photo, name: photo, widget: image, media_folder: /static/uploads, public_folder: /website/uploads }
+
+  - name: about
+    label: About Page
+    files:
+      - name: about
+        label: About (Bio)
+        file: content/_index.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - label: Menu
+            name: menu
+            widget: object
+            fields:
+              - label: Main
+                name: main
+                widget: object
+                fields:
+                  - { label: Nav Label, name: name, widget: string }
+                  - { label: Nav Weight, name: weight, widget: number }
+          - { label: Bio, name: body, widget: markdown }
+
+  - name: pages
+    label: Content Pages
+    folder: content
+    create: true
+    filter: { field: menu, value: main }
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - label: Menu
+        name: menu
+        widget: object
+        fields:
+          - label: Main
+            name: main
+            widget: object
+            fields:
+              - { label: Nav Label, name: name, widget: string }
+              - { label: Nav Weight (order in menu), name: weight, widget: number }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: cv
+    label: CV
+    files:
+      - name: cv
+        label: CV Sections
+        file: data/cv.yaml
+        fields:
+          - label: Sections
+            name: sections
+            widget: list
+            fields:
+              - { label: Section Title, name: title, widget: string }
+              - label: Entries
+                name: entries
+                widget: list
+                required: false
+                fields:
+                  - { label: Title / Role, name: title, widget: string, required: false }
+                  - { label: Institution, name: institution, widget: string, required: false }
+                  - { label: Location, name: location, widget: string, required: false }
+                  - { label: Years, name: years, widget: string, required: false }
+                  - { label: Note, name: note, widget: text, required: false }
+                  - { label: Text (for publications), name: text, widget: text, required: false }
+              - label: Subsections
+                name: subsections
+                widget: list
+                required: false
+                fields:
+                  - { label: Subsection Title, name: title, widget: string }
+                  - label: Entries
+                    name: entries
+                    widget: list
+                    fields:
+                      - { label: Text, name: text, widget: text }
