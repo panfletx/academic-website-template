@@ -2,8 +2,8 @@
 
 Hugo-based academic website with Sveltia CMS for non-technical content editing.
 
-**Live site:** https://panfletx.github.io/website/
-**Admin panel:** https://panfletx.github.io/website/admin/
+**Live site:** https://panfletx.github.io/persona-template/
+**Admin panel:** https://panfletx.github.io/persona-template/admin/
 **User editing guide:** [EDITING-GUIDE.md](EDITING-GUIDE.md)
 
 ---
@@ -12,12 +12,12 @@ Hugo-based academic website with Sveltia CMS for non-technical content editing.
 
 ### Prerequisites
 - [Hugo](https://gohugo.io/installation/) (extended version recommended)
-- A GitHub account with access to `panfletx/website`
+- A GitHub account with access to `panfletx/persona-template`
 
 ### Local development
 
 ```bash
-git clone https://github.com/panfletx/website.git
+git clone https://github.com/panfletx/persona-template.git
 cd website
 hugo server
 ```
@@ -39,7 +39,7 @@ Deploy [`sveltia/sveltia-cms-auth`](https://github.com/sveltia/sveltia-cms-auth)
 1. Go to GitHub → Settings → Developer settings → OAuth Apps → New OAuth App
 2. Set:
    - **Application name:** Website CMS
-   - **Homepage URL:** `https://panfletx.github.io/website/`
+   - **Homepage URL:** `https://panfletx.github.io/persona-template/`
    - **Authorization callback URL:** `https://sveltia-cms-auth.WORKER_NAME.workers.dev/callback`
 3. Note the **Client ID** and generate a **Client Secret**
 

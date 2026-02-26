@@ -1,11 +1,11 @@
 backend:
   name: github
-  repo: panfletx/website
+  repo: panfletx/persona-template
   branch: main
   base_url: https://sveltia-cms-auth.WORKER_NAME.workers.dev
 
 media_folder: static/uploads
-public_folder: /website/uploads
+public_folder: /persona-template/uploads
 
 collections:
 
@@ -19,7 +19,7 @@ collections:
           - { label: Full Name, name: name, widget: string }
           - { label: Position / Title, name: position, widget: string }
           - { label: Email Address, name: email, widget: string }
-          - { label: Profile Photo, name: photo, widget: image, media_folder: /static/uploads, public_folder: /website/uploads }
+          - { label: Profile Photo, name: photo, widget: image, media_folder: /static/uploads, public_folder: /persona-template/uploads }
 
   - name: about
     label: About Page

@@ -6,7 +6,7 @@ This guide explains how to update your website without writing any code. Everyth
 
 ## Getting Started
 
-1. Go to **`https://panfletx.github.io/website/admin/`**
+1. Go to **`https://panfletx.github.io/persona-template/admin/`**
 2. Click **"Login with GitHub"**
 3. Authorize the app if prompted — you only need to do this once
 4. You'll see the Content Manager with everything you can edit listed on the left
