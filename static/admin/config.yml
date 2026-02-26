@@ -2,7 +2,7 @@ backend:
   name: github
   repo: panfletx/persona-template
   branch: main
-  base_url: https://sveltia-cms-auth.sveltia-cms-auth.alan-ms9715.workers.dev
+  base_url: https://sveltia-cms-auth.alan-ms9715.workers.dev
 
 media_folder: static/uploads
 public_folder: /persona-template/uploads
