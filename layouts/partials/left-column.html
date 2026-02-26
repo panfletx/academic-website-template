@@ -1,0 +1,32 @@
+<div class="mobile-topbar">
+  <div class="topbar-row">
+    {{ with .Site.Home }}
+    <div class="topbar-identity">
+      <p class="name">{{ .Params.name }}</p>
+      <p class="position">{{ .Params.position }}</p>
+    </div>
+    {{ end }}
+    <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.body.classList.toggle('nav-open')">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  <nav class="mobile-nav">
+    <a href="{{ .Site.Home.RelPermalink }}"{{ if .IsHome }} class="active"{{ end }} onclick="document.body.classList.remove('nav-open')">About</a>
+    <a href="{{ "research/" | relURL }}"{{ if eq .File.ContentBaseName "research" }} class="active"{{ end }} onclick="document.body.classList.remove('nav-open')">Research</a>
+    <a href="{{ "teaching/" | relURL }}"{{ if eq .File.ContentBaseName "teaching" }} class="active"{{ end }} onclick="document.body.classList.remove('nav-open')">Teaching</a>
+    <a href="{{ "creative-writing/" | relURL }}"{{ if eq .File.ContentBaseName "creative-writing" }} class="active"{{ end }} onclick="document.body.classList.remove('nav-open')">Creative Writing</a>
+    <a href="{{ "cv/" | relURL }}"{{ if eq .Section "cv" }} class="active"{{ end }} onclick="document.body.classList.remove('nav-open')">CV</a>
+  </nav>
+</div>
+
+<div class="left">
+  <img src="{{ "headshot.jpg" | relURL }}" alt="{{ .Site.Title }}"{{ if not .IsHome }} class="headshot-non-home"{{ end }}>
+  <div class="caption caption-desktop">
+    {{ with .Site.Home }}
+    <p class="name">{{ .Params.name }}</p>
+    <p class="position">{{ .Params.position }}</p>
+    {{ end }}
+  </div>
+</div>

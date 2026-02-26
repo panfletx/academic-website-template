@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV — {{ .Site.Title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+</head>
+<body>
+  <div class="wrapper">
+
+    {{ partial "left-column.html" . }}
+
+    {{ partial "sidenav.html" . }}
+
+    <div class="right">
+      <div class="cv">
+
+        {{- range .Site.Data.cv.sections }}
+        <section>
+          <h2>{{ .title }}</h2>
+
+          {{- if .subsections }}
+            {{- range .subsections }}
+            <div class="subsection">
+              <h3>{{ .title }}</h3>
+              <ul>
+                {{- range .entries }}
+                <li>{{ .text }}</li>
+                {{- end }}
+              </ul>
+            </div>
+            {{- end }}
+
+          {{- else }}
+            {{- range .entries }}
+            <div class="entry">
+              <div class="entry-header">
+                <span class="entry-title">{{ .title }}</span>
+                {{- if .years }}<span class="entry-years">{{ .years }}</span>{{- end }}
+              </div>
+              {{- if .institution }}<p class="entry-meta">{{ .institution }}{{- if .location }}, {{ .location }}{{- end }}</p>{{- end }}
+              {{- if .note }}<p class="entry-note">{{ .note }}</p>{{- end }}
+            </div>
+            {{- end }}
+          {{- end }}
+
+        </section>
+        {{- end }}
+
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
